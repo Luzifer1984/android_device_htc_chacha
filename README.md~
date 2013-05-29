@@ -91,7 +91,7 @@ $ prebuilts/misc/linux-x86/ccache/ccache -M 50G
 
 $ source build/envsetup.sh; ./vendor/cm/get-prebuilts; USE_CCACHE=1
   
-$ lunch cm_chacha-userdebug
+$ lunch cm_marvel-userdebug
 
 $ make -j4 bacon
 
