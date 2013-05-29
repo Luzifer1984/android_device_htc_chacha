@@ -1,0 +1,58 @@
+diff -Naur a/packages/apps/Camera/res/values/config.xml b/packages/apps/Camera/res/values/config.xml
+--- a/packages/apps/Camera/res/values/config.xml	2013-05-25 05:16:39.000000000 +0800
++++ b/packages/apps/Camera/res/values/config.xml	2013-05-25 11:12:34.000000000 +0800
+@@ -50,4 +50,7 @@
+     <bool name="useContinuosFocusForTouch">false</bool>
+     <!-- Magic for enabling ZSL on Samsung cameras -->
+     <bool name="sendMagicSamsungZSLCommand">false</bool>
++
++ <!-- Compensation of the device's screen orientation (0, 90, 180, 270) -->
++ <integer name="deviceScreenRotation">0</integer>
+ </resources>
+diff -Naur a/packages/apps/Camera/src/com/android/camera/Util.java b/packages/apps/Camera/src/com/android/camera/Util.java
+--- a/packages/apps/Camera/src/com/android/camera/Util.java	2013-05-25 05:16:39.000000000 +0800
++++ b/packages/apps/Camera/src/com/android/camera/Util.java	2013-05-25 11:13:46.000000000 +0800
+@@ -160,6 +160,9 @@
+     // Workaround for QC cameras with broken face detection on front camera
+     private static boolean sNoFaceDetectOnFrontCamera;
+ 
++    // Enables to compensate the screen rotation 	103
++    private static int sDeviceScreenRotation;
++
+     // Software HDR based on manual shots with multiple exposure
+     private static boolean sEnableSoftwareHDR;
+     private static boolean sDoSoftwareHDRShot;
+@@ -200,7 +203,7 @@
+         sEnableZSL = context.getResources().getBoolean(R.bool.enableZSL);
+         sNoFaceDetectOnFrontCamera = context.getResources().getBoolean(
+                 R.bool.noFaceDetectOnFrontCamera);
+-
++        sDeviceScreenRotation = context.getResources().getInteger(R.integer.deviceScreenRotation);
+         sEnableSoftwareHDR = !context.getResources().getBoolean(R.bool.disableSoftwareHDR);
+         sSoftwareHDRExposureSettleTime = context.getResources().getInteger(
+                 R.integer.softwareHDRExposureSettleTime);
+@@ -556,10 +559,10 @@
+         Camera.getCameraInfo(cameraId, info);
+         int result;
+         if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+-            result = (info.orientation + degrees) % 360;
++            result = (info.orientation + degrees + sDeviceScreenRotation ) % 360;
+             result = (360 - result) % 360;  // compensate the mirror
+         } else {  // back-facing
+-            result = (info.orientation - degrees + 360) % 360;
++            result = (info.orientation - degrees - sDeviceScreenRotation + 360) % 360;
+         }
+         return result;
+     }
+@@ -860,9 +863,9 @@
+         if (orientation != OrientationEventListener.ORIENTATION_UNKNOWN) {
+             CameraInfo info = CameraHolder.instance().getCameraInfo()[cameraId];
+             if (info.facing == CameraInfo.CAMERA_FACING_FRONT) {
+-                rotation = (info.orientation - orientation + 360) % 360;
++                rotation = (info.orientation - orientation + sDeviceScreenRotation + 360) % 360;
+             } else {  // back-facing camera
+-                rotation = (info.orientation + orientation) % 360;
++                rotation = (info.orientation + orientation - sDeviceScreenRotation ) % 360;
+             }
+         }
+         return rotation;
