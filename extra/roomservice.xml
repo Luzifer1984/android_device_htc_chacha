@@ -2,11 +2,9 @@
 <manifest>
     <!-- CM projects removed -->
     <remove-project name="CyanogenMod/android_bionic" />
-    <remove-project name="CyanogenMod/android_bootable_recovery" />
 
     <!-- replacements -->
     <project name="WinSuk/android_bionic" path="bionic" revision="cm-10.1" />
-    <project name="PhilZ-cwm6/philz_touch_cwm6" path="bootable/recovery" revision="cm-10.1" />
 
     <!-- armv6 projects removed -->
     <remove-project name="androidarmv6/android_hardware_qcom_display-legacy" />
