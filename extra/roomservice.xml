@@ -13,7 +13,7 @@
     <project name="arco/android_hardware_qcom_display-legacy" path="hardware/qcom/display-legacy" revision="cm-10.1" />
 
     <!-- ChaCha device -->
-    <project name="Luzifer1984/OWL-Predator-KERNEL" path="kernel/htc/chacha" remote="github"  revision="master"/>
+    <project name="Luzifer1984/OWL-Predator-KERNEL_BAK" path="kernel/htc/chacha" remote="github"  revision="master"/>
     <project name="Luzifer1984/android_vendor_htc_chacha" path="vendor/htc/chacha" remote="github" revision="cm-10.1" />
     <project name="Luzifer1984/android_device_htc_chacha" path="device/htc/chacha" remote="github" revision="cm-10.1" />
     <project name="OWLProject/android_vendor_qcom_msm7x27" path="vendor/qcom/msm7x27" remote="github" revision="master"/>
