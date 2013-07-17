@@ -93,6 +93,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     sensors.chacha \
 
+### GPS
+PRODUCT_PACKAGES += \
+    gps.chacha \
+
 ### Add additional packages
 PRODUCT_PACKAGES += \
     Email2 \
