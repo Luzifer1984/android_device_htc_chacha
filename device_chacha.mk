@@ -90,8 +90,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.phone_storage=0
 
 ### Sensors (Compass, G-Sensor, Proximity, ...)
-PRODUCT_PACKAGES += \
-    sensors.chacha \
+#PRODUCT_PACKAGES += \
+#    sensors.chacha \
+# sensors  Included in android_device_htc_msm7x27-common_ChaCha/msm7x27.mk
 
 ### GPS
 PRODUCT_PACKAGES += \
