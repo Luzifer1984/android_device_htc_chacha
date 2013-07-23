@@ -35,8 +35,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 ### Mount vold
-#PRODUCT_COPY_FILES += \
-#    device/htc/chacha/vold.fstab:system/etc/vold.fstab
+PRODUCT_COPY_FILES += \
+    device/htc/chacha/vold.fstab:system/etc/vold.fstab
 
 
 ### Keylayouts
